@@ -45,7 +45,7 @@ const ProductList = () => {
     setLoading(true);
     const fetchPosts = async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/products?page=${currentPage}&limit=${itemsPerPage}&sort=${sortValue}&category=${search ? '' : currentCategory}&searchQuery=${search}`
+        `https://electronic-ecommerce-api.vercel.app/api/products?page=${currentPage}&limit=${itemsPerPage}&sort=${sortValue}&category=${search ? '' : currentCategory}&searchQuery=${search}`
       );
       setProducts(res.data.products);
       setProductCount(res.data.productCount);
@@ -57,7 +57,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       const res = await axios.get(
-        'http://localhost:5000/api/products/category'
+        'https://electronic-ecommerce-api.vercel.app/api/products/category'
       );
       setCategories(res.data);
     };
