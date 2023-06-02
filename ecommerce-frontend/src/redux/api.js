@@ -1,4 +1,4 @@
-import { addOrder, isError, isLoading, getOrder , updateOrder } from './orderSlice';
+import { addOrder, isError, isLoading, getOrder , updateOrder } from './OrderSlice';
 import {
   showError,
   startLoading,
