@@ -4,7 +4,7 @@ import {
   startLoading,
   getProduct,
   reviewAction,
-} from './productSlice';
+} from './ProductSlice';
 
 import {
   registerPending,
