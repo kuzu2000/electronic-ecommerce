@@ -10,7 +10,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(calculateTotals());
