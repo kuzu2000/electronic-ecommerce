@@ -1456,6 +1456,7 @@ tr > td {
 
 .my-orders-container {
   margin: 40px auto;
+  overflow-x: auto;
 }
 
 #table {
@@ -1513,13 +1514,13 @@ tr > td {
     
   }
 
-  .order-detail-container {
+  .order-detail-container, .order-container {
     flex-direction: column;
     justify-content: center;
   }
 
   .order-container-col-1, .order-detail-container-col-1 {
-    margin: 20px;
+    margin: 0px 20px;
   }
 
   .order-info {
@@ -1612,6 +1613,10 @@ tr > td {
     margin: 30px auto;
     max-width: 350px;
     padding: 30px;
+  }
+
+  .my-account-container > form {
+    width: 340px;
   }
 }
 

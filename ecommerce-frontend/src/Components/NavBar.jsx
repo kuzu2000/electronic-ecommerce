@@ -35,15 +35,16 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    const closePopUp = (e) => {
-      if (e.path[0] !== btnRef.current) {
+    function handleClickOutside(event) {
+      if (btnRef.current && !btnRef.current.contains(event.target)) {
         setOpen(false);
       }
+    }
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
     };
-
-    document.body.addEventListener('click', closePopUp);
-
-    return () => document.body.removeEventListener('click', closePopUp);
   }, []);
 
   return (
@@ -72,7 +73,7 @@ const NavBar = () => {
           </div>
           <div className="dropdown">
 
-              <i className="fas fa-user"   ref={btnRef}
+              <i className="fas fa-user btnReference"   ref={btnRef}
               onClick={() => setOpen(!open)}></i>
             <div
               className={!open ? 'dropdown-content none' : 'dropdown-content'}

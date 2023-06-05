@@ -38,7 +38,7 @@ const MyOrders = () => {
                 </td>
                 <td className={order.isPaid ? 'is-paid' : 'td'} >{order.isPaid ? 'Paid' : 'Not Paid'}</td>
                 <td className={order.isPaid ? 'is-paid' : 'td'} >{Moment().subtract(order.createdAt).calendar()}</td>
-                <td className={order.isPaid ? 'is-paid' : 'td'} >${order.total}</td>
+                <td className={order.isPaid ? 'is-paid' : 'td'} >${order.total?.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>

@@ -4,7 +4,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { getOrderItem, updateOrderItem } from '../redux/api';
 import { Link, useLocation } from 'react-router-dom';
 import { userRequest } from '../redux/requestMethod';
-import Loading from './Loading';
+
 const OrderDetail = () => {
   const [clientSecret, setClientSecret] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const OrderDetail = () => {
   useEffect(() => {
     const makeRequest = async () => {
       const res = await userRequest.post('/checkout/payment', {
-        amount: order.products.total,
+        amount: order.products?.total,
       });
       setClientSecret(res.data.clientSecret);
     };
@@ -101,9 +101,9 @@ const OrderDetail = () => {
               <div className="order-user-info">
                 <h3>Deliver to</h3>
                 <p className="order-user-address">
-                  <strong>Address:</strong> {order.products.address},{' '}
-                  {order.products.city}, {order.products.country},{' '}
-                  {order.products.postalCode}
+                  <strong>Address:</strong> {order.products?.address},{' '}
+                  {order.products?.city}, {order.products?.country},{' '}
+                  {order.products?.postalCode}
                 </p>
               </div>
             </div>
@@ -111,23 +111,23 @@ const OrderDetail = () => {
         <div className="order-status">
         <p
               className={
-                order.products.isPaid
+                order.products?.isPaid
                   ? 'order-is-paid paid'
                   : 'order-is-paid'
               }
             >
               {' '}
-              {order.products.isPaid ? 'Paid' : 'Not Paid'}{' '}
+              {order.products?.isPaid ? 'Paid' : 'Not Paid'}{' '}
             </p>
             <p
               className={
-                order.products.isDelivered
+                order.products?.isDelivered
                   ? 'order-is-delivered delivered'
                   : 'order-is-delivered'
               }
             >
               {' '}
-              {order.products.isDelivered ? 'Delivered' : 'Not Delivered'}{' '}
+              {order.products?.isDelivered ? 'Delivered' : 'Not Delivered'}{' '}
             </p>
           </div>
           <div className="cart-list" style={{marginTop: 20}}>
@@ -160,32 +160,32 @@ const OrderDetail = () => {
         <h2>Order Total</h2>
         <div className="cart-total">
           <h4>Products</h4>
-          <span>€{order.products.productsTotal}</span>
+          <span>€{order.products?.productsTotal}</span>
         </div>
         <div className="cart-total">
           <h4>Shipping Fee</h4>
-          <span>€{order.products.shippingFee}</span>
+          <span>€{order.products?.shippingFee}</span>
         </div>
         <div className="cart-total">
           <h4>Tax</h4>
-          <span>€{order.products.tax}</span>
+          <span>€{order.products?.tax}</span>
         </div>
-        {order.products.couponUsed > 1 && (
+        {order.products?.couponUsed > 1 && (
           <div className="cart-total">
-            <h4>Coupon Discount (-{order.products.couponUsed}%)</h4>
+            <h4>Coupon Discount (-{order.products?.couponUsed}%)</h4>
             <span>
               $
               {Math.floor(
-                (order.products.couponUsed / 100) * order.products.total
+                (order.products?.couponUsed / 100) * order.products?.total
               )}
             </span>
           </div>
         )}
         <div className="cart-total">
           <h4>Total</h4>
-          <span>€{order.products.total.toFixed(2)}</span>
+          <span>€{order.products?.total?.toFixed(2)}</span>
         </div>
-        {!order.products.couponUsed && (
+        {!order.products?.couponUsed && (
           <div className="coupon-field">
             {success && <span className="coupon-success">{success}</span>}
             {error && <span className="coupon-error">{error}</span>}
@@ -202,7 +202,7 @@ const OrderDetail = () => {
           </div>
         )}
         <CardElement options={cardElementOptions} />
-        {order.products.isPaid ? (
+        {order.products?.isPaid ? (
           <button style={{ marginTop: 10 }} className="checkout-btn-paid">
             ALREADY PAID
           </button>
