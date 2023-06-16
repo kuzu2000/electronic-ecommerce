@@ -13,10 +13,8 @@ router.get('/', async (req, res) => {
   res.status(200).json(orders);
 });
 
-router.get('/user', verifyToken, async (req, res) => {
-  let id = req.user.id;
-  let o_id = new ObjectId(id);
-  const orders = await Order.find({ user: ObjectId(id) })
+router.get('/user/:id', verifyTokenAndAuthorization, async (req, res) => {
+  const orders = await Order.find({ user: req.params.id })
     .sort({
       createdAt: -1,
     })
