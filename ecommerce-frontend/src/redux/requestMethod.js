@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://electronic-ecommerce-api.vercel.app/api';
+const BASE_URL = 'https://electronic-ecommerce-api.vercel.app/api';
 
 const user = JSON.parse(localStorage.getItem('persist:root'))?.user;
 const currentUser = user && JSON.parse(user).currentUser;
