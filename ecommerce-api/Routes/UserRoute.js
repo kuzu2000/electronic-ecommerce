@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
         isAdmin: result.isAdmin,
       },
       'secret',
-      { expiresIn: '3d' }
+      { expiresIn: '30d' }
     );
 
     res.status(201).json({ result, token });
@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
         id: oldUser._id,
       },
       'secret',
-      { expiresIn: '3d' }
+      { expiresIn: '30d' }
     );
 
     res.status(200).json({ result: oldUser, token });
@@ -107,7 +107,7 @@ router.patch('/:id', verifyTokenAndAuthorization, async (req, res) => {
       id: updatedUser._id,
     },
     'secret',
-    { expiresIn: '3d' }
+    { expiresIn: '30d' }
   );
 
   res.status(201).json({ result: created, token });
