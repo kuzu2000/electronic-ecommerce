@@ -3,18 +3,23 @@ import { userRequest } from '../redux/requestMethod';
 import Moment from 'moment';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
+import { useSelector } from 'react-redux'
 const MyOrders = () => {
+  const user = useSelector((state) => state.user);
+  const auth = user.currentUser?.result?._id;
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
     const getUserOrder = async () => {
-      const res = await userRequest.get(`/orders/user`);
+      const res = await userRequest.get(`/orders/user/${auth}`);
       setOrders(res.data);
       setLoading(false);
-    };
+    }; 
     getUserOrder();
   }, []);
+
+  console.log(orders)
 
   return (
     <div className="my-orders-container">
