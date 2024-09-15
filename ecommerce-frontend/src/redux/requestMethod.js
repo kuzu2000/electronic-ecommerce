@@ -4,19 +4,19 @@ const BASE_URL = 'https://electronic-ecommerce-api.vercel.app/api';
 
 // Get 'persist:root' from localStorage
 const persistRoot = localStorage.getItem('persist:root');
-console.log('persist:root from localStorage:', persistRoot);
+
 
 // Parse 'persist:root' if it exists
 const user = persistRoot ? JSON.parse(persistRoot).user : null;
-console.log('User data:', user);
+
 
 // Ensure 'user' is parsed and 'currentUser' exists
 const currentUser = user ? JSON.parse(user).currentUser : null;
-console.log('Current user:', currentUser);
+
 
 // Retrieve token from currentUser
 const TOKEN = currentUser?.token;
-console.log('Token:', TOKEN);
+
 
 // Axios instance for public requests (no auth token needed)
 export const publicRequest = axios.create({
