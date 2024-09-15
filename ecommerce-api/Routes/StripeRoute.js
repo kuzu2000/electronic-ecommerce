@@ -10,14 +10,27 @@ const {
 
 router.post('/payment', verifyToken, async (req, res) => {
   const total = req.body.amount;
-  const payment = await stripe.paymentIntents.create({
-    amount: Math.round(total * 100),
-    currency: 'usd',
-    payment_method_types: ['card'],
-  });
-  res.status(201).json({
-    clientSecret: payment.client_secret,
-  });
+  console.log('Total amount:', total); // Debugging line
+  
+  // Validate the amount
+  if (!total || isNaN(total)) {
+    return res.status(400).json({ message: 'Invalid amount' });
+  }
+
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount: Math.round(total * 100), // Convert to smallest currency unit (cents for USD)
+      currency: 'usd',
+      payment_method_types: ['card'],
+    });
+    
+    res.status(201).json({
+      clientSecret: payment.client_secret,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
+
 
 module.exports = router;

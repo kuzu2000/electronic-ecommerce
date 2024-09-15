@@ -9,6 +9,11 @@ const MyOrders = () => {
   const auth = user.currentUser?.result?._id;
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  console.log(user.currentUser.token)
+
+console.log(auth)
+
   useEffect(() => {
     setLoading(true);
     const getUserOrder = async () => {
